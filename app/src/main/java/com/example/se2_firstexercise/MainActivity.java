@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             for(int i=0; i < number.length(); i++){
                 if(i%2 != 0){
-                    newNumber.append((char)(number.charAt(i) + 64));
+                    newNumber.append((char)(number.charAt(i) + 48));
                 }
                 else{
                     newNumber.append(number.charAt(i));
