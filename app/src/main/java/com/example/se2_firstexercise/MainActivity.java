@@ -87,8 +87,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == btnSubmit){
             String number = txtNumber.getText().toString();
             if(!number.equals("")){
-                int matrikel = Integer.parseInt(String.valueOf(number));
-                contactServer(matrikel);
+                try {
+                    int matrikel = Integer.parseInt(String.valueOf(number));
+                    contactServer(matrikel);
+                }
+                catch(Exception e){
+                    txtResponse.setText(e.toString());
+                }
             }
             else{
                 txtResponse.setText("Bitte die Matrikelnummer eingeben");
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             StringBuilder newNumber = new StringBuilder();
 
             for(int i=0; i < number.length(); i++){
-                if(i%2 != 0){
+                if(i%2 != 0 && number.charAt(i) != '0'){
                     newNumber.append((char)(number.charAt(i) + 48));
                 }
                 else{
