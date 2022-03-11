@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnSubmit;
     EditText txtNumber;
     TextView txtResponse;
+    Button btnAscii;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubmit = findViewById(R.id.btnSubmit);
         txtNumber = findViewById(R.id.txtNumber);
         txtResponse = findViewById(R.id.txtResponse);
+        btnAscii = findViewById(R.id.btnAscii);
     }
 
     private void registrateEventHandlers(){
         btnSubmit.setOnClickListener(this);
+        btnAscii.setOnClickListener(this);
     }
 
     private void contactServer(int matrikel){
@@ -90,6 +93,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else{
                 txtResponse.setText("Bitte die Matrikelnummer eingeben");
             }
+        }else if(v == btnAscii){
+            String number = txtNumber.getText().toString();
+            StringBuilder newNumber = new StringBuilder();
+
+            for(int i=0; i < number.length(); i++){
+                if(i%2 != 0){
+                    newNumber.append((char)(number.charAt(i) + 64));
+                }
+                else{
+                    newNumber.append(number.charAt(i));
+                }
+            }
+
+            txtResponse.setText(newNumber.toString());
         }
     }
 }
